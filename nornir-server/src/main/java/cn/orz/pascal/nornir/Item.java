@@ -5,9 +5,12 @@
  */
 package cn.orz.pascal.nornir;
 
+import java.util.UUID;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  *
@@ -17,21 +20,26 @@ import javax.persistence.Id;
 public class Item {
 
     @Id
-    @GeneratedValue
-    private long id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
     private String name;
     private int price;
 
     public Item() {
     }
 
-    public Item(long id, String name, int price) {
+    public Item(UUID id, String name, int price) {
         this.id = id;
         this.name = name;
         this.price = price;
     }
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 
@@ -43,7 +51,7 @@ public class Item {
         return price;
     }
 
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

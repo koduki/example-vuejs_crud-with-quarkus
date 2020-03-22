@@ -1,6 +1,7 @@
 package cn.orz.pascal.nornir;
 
 import java.util.List;
+import java.util.UUID;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
@@ -24,7 +25,7 @@ public class ItemResource {
 
     @GET
     @Path("{id}")
-    public Item get(@PathParam("id") long id) {
+    public Item get(@PathParam("id") UUID id) {
         return repository.findById(id);
     }
 
@@ -40,13 +41,13 @@ public class ItemResource {
 
     @PUT
     @Path("{id}")
-    public void update(@PathParam("id") long id, Item item) {
+    public void update(@PathParam("id") UUID id, Item item) {
         repository.update(id, item);
     }
 
     @DELETE
     @Path("{id}")
-    public void delete(@PathParam("id") long id) {
+    public void delete(@PathParam("id") UUID id) {
         repository.delete("id", id);
     }
 }

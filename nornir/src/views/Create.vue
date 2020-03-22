@@ -4,9 +4,9 @@
       <div class="card-header">
         <h3>Add Item</h3>
       </div>
-      <from v-show="message" class="alert alert-danger">{{message}}</from>
       <div class="card-body">
         <form v-on:submit.prevent="addItem">
+          <div v-show="message" class="alert alert-danger">{{message}}</div>
           <div class="form-group">
             <label>Item Name:</label>
             <input type="text" class="form-control" v-model="item.name" />

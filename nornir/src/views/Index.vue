@@ -23,7 +23,7 @@
             <router-link :to="{name: 'Edit', params: { id: item.id }}" class="btn btn-primary">Edit</router-link>
           </td>
           <td>
-            <button class="btn btn-danger">Delete</button>
+            <button class="btn btn-danger" v-on:click="deleteItem(item.id)">Delete</button>
           </td>
         </tr>
       </tbody>
@@ -48,6 +48,12 @@ export default {
       let uri = "/items";
       this.axios.get(uri).then(response => {
         this.items = response.data;
+      });
+    },
+    deleteItem(id) {
+      let uri = "/items/" + id;
+      this.axios.delete(uri).then(() => {
+        this.fetchItems();
       });
     }
   }

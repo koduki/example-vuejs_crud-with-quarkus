@@ -6,6 +6,7 @@
 package cn.orz.pascal.nornir;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
+import java.util.UUID;
 import javax.enterprise.context.ApplicationScoped;
 
 /**
@@ -14,8 +15,13 @@ import javax.enterprise.context.ApplicationScoped;
  */
 @ApplicationScoped
 public class ItemRepository implements PanacheRepository<Item> {
-    public void update(long id, Item item){
-        var x = this.findById(id);
+
+    public Item findById(UUID id) {
+        return this.find("id", id).list().get(0);
+    }
+
+    public void update(UUID id, Item item) {
+        var x = findById(id);
         x.setName(item.getName());
         x.setPrice(item.getPrice());
     }
