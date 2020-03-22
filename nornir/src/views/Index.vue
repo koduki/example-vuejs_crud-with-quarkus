@@ -1,5 +1,3 @@
-// Index.vue
-
 <template>
   <div>
     <h1>Items</h1>
