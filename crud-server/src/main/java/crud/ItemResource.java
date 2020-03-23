@@ -31,13 +31,11 @@ public class ItemResource {
 
     @GET
     public List<Item> list() {
-        System.out.println(1);
         return repository.listAll();
     }
 
     @POST
     public void create(Item item) {
-        System.out.println(item);
         repository.persist(item);
     }
 

@@ -44,7 +44,7 @@ export default {
     },
     updateItem() {
       let uri = "/items/" + this.$route.params.id;
-      this.axios.put(uri, this.item).then(response => {
+      this.axios.put(uri, this.item).then(() => {
         this.$swal({
           icon: "success",
           text: "Updated Success!"
