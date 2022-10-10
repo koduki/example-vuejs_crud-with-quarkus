@@ -1,6 +1,7 @@
-package cn.orz.pascal.nornir;
+package dev.nklab.nornir;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -14,6 +15,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+/**
+ *
+ * @author koduki
+ */
 @Path("/items")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
@@ -35,19 +40,22 @@ public class ItemResource {
     }
 
     @POST
-    public void create(Item item) {
+    public Map<String, String> create(Item item) {
         repository.persist(item);
+        return Map.of("status", "OK");
     }
 
     @PUT
     @Path("{id}")
-    public void update(@PathParam("id") UUID id, Item item) {
+    public Map<String, String> update(@PathParam("id") UUID id, Item item) {
         repository.update(id, item);
+        return Map.of("status", "OK");
     }
 
     @DELETE
     @Path("{id}")
-    public void delete(@PathParam("id") UUID id) {
+    public Map<String, String> delete(@PathParam("id") UUID id) {
         repository.delete("id", id);
+        return Map.of("status", "OK");
     }
 }
